@@ -10,7 +10,7 @@
         <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <child>
-          <object class="GtkNotebook">
+          <object class="GtkNotebook" id="tabsView">
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <child>
