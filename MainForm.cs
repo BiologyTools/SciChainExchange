@@ -21,8 +21,8 @@ namespace SciExchange
         private static string GUID;
         private const string btcAddress = "bc1qmzhrvny0y4guhgk9kfxkez7t8j36sze8q6l889";
         private const string ethAddress = "0x04ACF5E365FE0d10c11c3a5fB79c78b64b26B0ac";
-        private const string ethAPI = "U3HYWJT342P7X75MCTQUDZ5C5QDEIDKD3H";
         private const string solAddress = "FooEH59N85vFTyktDz9kB7SBmLTgB6JS8UJGHKwgrbk6";
+        private const string ltcAddress = "LXtZPCFMJ32g6MUZf3S8dz2CBbzZnZsbUn";
         private Blockchain.Wallet wallet;
         public string peer = "92.205.238.105";
 #pragma warning disable 649
@@ -35,6 +35,8 @@ namespace SciExchange
         [Builder.Object]
         private Entry solTransactionBox;
         [Builder.Object]
+        private Entry ltcTransactionBox;
+        [Builder.Object]
         private Entry passwordBox;
         [Builder.Object]
         private Button loginBut;
@@ -44,6 +46,8 @@ namespace SciExchange
         private Button copyETHBut;
         [Builder.Object]
         private Button copySOLBut;
+        [Builder.Object]
+        private Button copyLTCBut;
         [Builder.Object]
         private Button swapBut;
         [Builder.Object]
@@ -87,13 +91,18 @@ namespace SciExchange
         /// <summary> Sets up the handlers. </summary>
         protected void SetupHandlers()
         {
-            swapBut.Clicked += SwapBut_Clicked;
             loginBut.Clicked += loginBut_Click;
             swapBut.Clicked += SwapBut_Clicked;
             copyBut.Clicked += CopyBut_Clicked;
             copyETHBut.Clicked += CopyETHBut_Clicked;
             copySOLBut.Clicked += CopySOLBut_Clicked;
+            copyLTCBut.Clicked += CopyLTCBut_Clicked;
             this.Destroyed += MainForm_Destroyed;
+        }
+
+        private void CopyLTCBut_Clicked(object? sender, EventArgs e)
+        {
+            TextCopy.ClipboardService.SetText(ltcAddress);
         }
 
         private void MainForm_Destroyed(object? sender, EventArgs e)
@@ -136,6 +145,13 @@ namespace SciExchange
                 tr.SignTransaction(wallet.PrivateKey);
                 AddTransaction(tr);
             }
+            else if (tabsView.CurrentPage == 3)
+            {
+                Block.Transaction tr = new Block.Transaction(Block.Transaction.Type.transaction, GUID, wallet.PublicKey, GUID, 0);
+                tr.Data = ltcTransactionBox.Text;
+                tr.SignTransaction(wallet.PrivateKey);
+                AddTransaction(tr);
+            }
         }
 
         private void loginBut_Click(object? sender, EventArgs e)
@@ -144,14 +160,14 @@ namespace SciExchange
             wallet.Load(passwordBox.Text);
             string st = RSA.RSAParametersToStringAll(wallet.PrivateKey);
             GUID = CalculateHash(st);
-            Initialize(wallet);
+            Initialize(wallet,GUID);
             ChatClient cl = new ChatClient(peer, 8333);
             cl.ConnectAsync();
             ConnectToPeer(peer, cl, 8333);
             Blockchain.Load();
             StartTimer();
             statusLabel.Text = "Logged In:" + GUID;
-            balanceLabel.Text = "Balance: " + GetBalance(GUID).ToString();
+            balanceLabel.Text = "Balance: " + GetBalance(GUID,true).ToString();
         }
 
         /// <summary>
@@ -168,10 +184,7 @@ namespace SciExchange
         {
             TextCopy.ClipboardService.SetText(btcAddress);
         }
-
         #endregion
-
-
 
         /// <summary>
         /// The Timer function updates status, balance, and reputation labels on a form at regular
@@ -183,7 +196,7 @@ namespace SciExchange
             {
                 try
                 {
-                    form.balanceLabel.Text = "Balance: " + GetBalance(GUID).ToString();
+                    form.balanceLabel.Text = "Balance: " + GetBalance(GUID,true).ToString();
                     Thread.Sleep(10000);
                 }
                 catch (Exception e)
