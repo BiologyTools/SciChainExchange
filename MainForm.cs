@@ -19,10 +19,10 @@ namespace SciExchange
         private Builder _builder;
         private static MainForm form;
         private static string GUID;
-        private const string btcAddress = "bc1qmzhrvny0y4guhgk9kfxkez7t8j36sze8q6l889";
-        private const string ethAddress = "0x04ACF5E365FE0d10c11c3a5fB79c78b64b26B0ac";
-        private const string solAddress = "FooEH59N85vFTyktDz9kB7SBmLTgB6JS8UJGHKwgrbk6";
-        private const string ltcAddress = "LXtZPCFMJ32g6MUZf3S8dz2CBbzZnZsbUn";
+        private const string btcAddress = "bc1qenyssyzk436055uue4yldn089m7zxu9ktqdjrf";
+        private const string ethAddress = "0x8C984E22bA314C7002045ee7350506DD59AAcd30";
+        private const string solAddress = "4gaXrmUqWvs4ad59wLMxkurdZ682jz3qogbLr4EFaTKX";
+        private const string ltcAddress = "ltc1qhd8gtsqqy4jlvs08e656h83qulrqarke8csh93";
         private Blockchain.Wallet wallet;
         public string peer = "92.205.238.105";
 #pragma warning disable 649

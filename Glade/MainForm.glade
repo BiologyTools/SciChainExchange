@@ -52,7 +52,7 @@
                       <object class="GtkLabel" id="addressLabel">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">BTC Address: bc1qmzhrvny0y4guhgk9kfxkez7t8j36sze8q6l889</property>
+                        <property name="label" translatable="yes">BTC Address: bc1qenyssyzk436055uue4yldn089m7zxu9ktqdjrf</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -171,7 +171,7 @@
                       <object class="GtkLabel" id="ethAddressLabel">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">ETH Address: 0x04ACF5E365FE0d10c11c3a5fB79c78b64b26B0ac</property>
+                        <property name="label" translatable="yes">ETH Address: 0x8C984E22bA314C7002045ee7350506DD59AAcd30</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -294,7 +294,7 @@
                       <object class="GtkLabel" id="addressLabelETH">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">SOL Address: FooEH59N85vFTyktDz9kB7SBmLTgB6JS8UJGHKwgrbk6</property>
+                        <property name="label" translatable="yes">SOL Address: 4gaXrmUqWvs4ad59wLMxkurdZ682jz3qogbLr4EFaTKX</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -417,7 +417,7 @@
                       <object class="GtkLabel" id="addressLabel1">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">LTC Address: LXtZPCFMJ32g6MUZf3S8dz2CBbzZnZsbUn</property>
+                        <property name="label" translatable="yes">LTC Address: ltc1qhd8gtsqqy4jlvs08e656h83qulrqarke8csh93</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
